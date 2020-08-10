@@ -21,7 +21,7 @@
 
  	}elseif($peticion == 'productos_destacados'){
 
- 		$sql = 'select * from productos order by precio desc limit 2';
+ 		$sql = 'select * from productos order by vendido desc limit 6';
  		$result = mysqli_query($connection, $sql);
  		$data = [];
 
