@@ -16,12 +16,12 @@
  			array_push($data, $temp);
  		}
 
- 		sleep(4);
- 		echo json_encode(array('data'=>$data));
+ 		sleep(2);
+ 		echo json_encode(array('data'=>$data, 'peticion'=>'productos_nuevos'));
 
  	}elseif($peticion == 'productos_destacados'){
 
- 		$sql = 'select * from productos order by vendido desc limit 6';
+ 		$sql = 'select * from productos where nuevo != 1 order by vendidos desc limit 6';
  		$result = mysqli_query($connection, $sql);
  		$data = [];
 
@@ -29,7 +29,8 @@
  			array_push($data, $temp);
  		}
 
- 		echo json_encode(array('data'=>$data));
+ 		sleep(2);
+ 		echo json_encode(array('data'=>$data, 'peticion'=>'productos_destacados'));
  	}
  	
 
