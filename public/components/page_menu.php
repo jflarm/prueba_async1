@@ -3,12 +3,12 @@
    <!-- Start of Page Menu -->
     <div id="page_menu">
       <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="#">Productos</a></li>
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#">Promocion</a></li>
-        <li class="last"><a href="#">Contacto</a></li>
+        <li><a href="?inicio">Inicio</a></li>
+        <li><a href="?view=nosotros">Nosotros</a></li>
+        <li><a href="?view=productos">Productos</a></li>
+        <li><a href="?view=servicios">Servicios</a></li>
+        <li><a href="?view=promocion">Promocion</a></li>
+        <li class="last"><a href="?view=contacto">Contacto</a></li>
       </ul>
     </div>
     <!-- End of Page Menu -->
