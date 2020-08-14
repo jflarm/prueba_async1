@@ -81,7 +81,6 @@ function lista_productos(peticion){
 				})
 			}
 
-			
 
 			setInterval(function(){
 
