@@ -24,7 +24,7 @@
         <h3>Buscar:</h3>
         <form action="#">
           <div>
-            <input type="text" />
+            <input type="text" id="campo_buscar" />
             <input type="image" src="<?php echo APP_ROOT ?>/public/images/button_go.gif" class="button" />
             <div class="clearthis">&nbsp;</div>
           </div>

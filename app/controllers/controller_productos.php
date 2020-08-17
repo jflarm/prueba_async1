@@ -1,5 +1,6 @@
 <?php 
  
+
 	require_once '../core/config.php';
  	$peticion = $_POST['peticion'];
 
@@ -7,13 +8,12 @@
 
  	if($peticion == 'productos_nuevos'){
 
- 		$sql = 'select * from productos where nuevo = 1';
- 		$result = mysqli_query($connection, $sql);
- 		$data=[];
+ 		// Llamamos a la funcion que ejecuta el query y le pasamos el query para
+ 		// productos nuevos
+ 		$new_products = executeQuery('select * from productos where nuevo = 1');
 
- 		// print_r ($connection);
- 		while($temp =  mysqli_fetch_assoc($result)){
- 			array_push($data, $temp);
+ 		// Se devuelve un json con los datos resultantes de la consulta
+ 		echo json_encode(array('data'=>$new_products, 'peticion'=>'productos_nuevos'));
  		}
 
  		sleep(2);
@@ -31,9 +31,24 @@
 
  		sleep(2);
  		echo json_encode(array('data'=>$data, 'peticion'=>'productos_destacados'));
+ 	}elseif ($peticion == 'buscar') {
+ 		echo json_encode(array('data'=>$_POST['valor'], 'peticion'=>'buscar'));
  	}
  	
+ 	// Functions
 
+ 	function executeQuery($query){
+ 		$sql = '$query;
+ 		$result = mysqli_query($connection, $sql);
+ 		$data=[];
+
+ 		// print_r ($connection);
+ 		while($temp =  mysqli_fetch_assoc($result)){
+ 			array_push($data, $temp);
+ 		}
+
+ 		return $data;
+ 	}
 
 
  ?>

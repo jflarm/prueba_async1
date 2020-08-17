@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	lista_productos('productos_nuevos')
 	lista_productos('productos_destacados')
+	buscadorProductos()
 })
 
 
@@ -27,6 +28,8 @@ function mostrar_productos_destacados(argL, argR){
 	$('#descripcion_producto_right').html(argR.descripcion_producto)
 	$('#precio_producto_right').html(argR.precio)
 }
+
+
 
 // Funcion para mostrar productos nuevos
 
@@ -159,3 +162,34 @@ function lista_productos(peticion){
 
 	})
 }
+
+// Funcion para el buscador de productos
+function buscadorProductos(){
+	$(document).on('keyup', '#campo_buscar', function(e){
+		$.ajax({
+			url: 'app/controllers/controller_productos.php',
+			type: 'POST',
+			data: {
+				peticion: 'buscar',
+				valor: $(this).val()
+			},
+		
+			success: function(response) {
+				// console.log(response)
+				let main_content = $('#main_content')
+				$(main_content).html('<pre>'+response+'</pre>')
+			},
+
+			fail: function() {
+				console.log("error")
+			},
+
+			always: function() {
+				console.log("complete")
+			}
+		})
+	})
+}
+
+
+
