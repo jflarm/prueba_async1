@@ -18,32 +18,7 @@
     <!-- Start of Main Content Area -->
     <div id="main_content">
 
-      <?php 
-        if(isset($_GET['view'])){
-          if($_GET['view'] == 'productos'){
-            require_once APP_ROOT.'/public/views/productos.php';
-          }
-          elseif ($_GET['view'] == 'nosotros') {
-             require_once APP_ROOT.'/public/views/nosotros.php'; 
-          }elseif($_GET['view'] == 'promocion') {
-             require_once APP_ROOT.'/public/views/promocion.php'; 
-          }elseif ($_GET['view'] == 'servicios') {
-             require_once APP_ROOT.'/public/views/servicios.php'; 
-          }elseif ($_GET['view'] == 'contacto') {
-             require_once APP_ROOT.'/public/views/contacto.php'; 
-          }
 
-        }else{
-          // Este es el inicio
-          require_once APP_ROOT.'/public/components/new_item.php';
-          echo '<div class="h_divider">&nbsp;</div>';
-
-          require_once APP_ROOT.'/public/components/sub_items.php';
-          echo '<div class="h_divider">&nbsp;</div>';
-          // End of Main Content Area
-      
-        }
-      ?>
 
 
     </div>

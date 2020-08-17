@@ -1,4 +1,8 @@
+
+let inicio = true
+
 $(document).ready(function(){
+	mostrarViews(inicio)
 	lista_productos('productos_nuevos')
 	lista_productos('productos_destacados')
 	buscadorProductos()
@@ -229,3 +233,39 @@ function componentProducto(data){
 }
 
 
+// Funcion para mostrar las vistas
+
+function mostrarViews(inicio){
+	let view = null 
+	if(inicio){
+		view = 'inicio'
+		inicio = false
+		$.ajax({
+			url: 'app/controllers/controller_views.php',
+			type: 'POST',
+			data: {
+				view: view
+			},
+			success: function(response){
+				const main_content = $('#main_content')
+				$(main_content).html(response)
+			}
+		})
+	}
+	$(document).on('click', '.item-menu', function(e){
+
+		let view = $(this).attr('data-view')
+			
+		$.ajax({
+			url: 'app/controllers/controller_views.php',
+			type: 'POST',
+			data: {
+				view: view
+			},
+			success: function(response){
+				const main_content = $('#main_content')
+				$(main_content).html(response)
+			}
+		})
+	})
+}
