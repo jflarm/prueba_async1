@@ -166,18 +166,37 @@ function lista_productos(peticion){
 // Funcion para el buscador de productos
 function buscadorProductos(){
 	$(document).on('keyup', '#campo_buscar', function(e){
+		let valor = $(this).val()
 		$.ajax({
 			url: 'app/controllers/controller_productos.php',
 			type: 'POST',
 			data: {
 				peticion: 'buscar',
-				valor: $(this).val()
+				valor: valor
 			},
 		
 			success: function(response) {
 				// console.log(response)
-				let main_content = $('#main_content')
-				$(main_content).html('<pre>'+response+'</pre>')
+				// let main_content = $('#main_content')
+				// $(main_content).html('<pre>'+response+'</pre>')
+				const main_content = $('#main_content')
+				const result = JSON.parse(response)
+
+				console.log(result.data)
+				if(result.data.length < 1){
+					$(main_content).html('No existen herramientas con es nombre')
+				}
+				else if(valor == ''){
+					location.href='../../../prueba_async1/'
+				}
+
+				else {
+					$(main_content).html('<ul id="list-found"></ul>')
+					for(let i = 0; i <result.data.length; i++){
+						$(document).find('#list-found').append(componentProducto(result.data[i]))
+					}
+				}
+
 			},
 
 			fail: function() {
@@ -191,5 +210,22 @@ function buscadorProductos(){
 	})
 }
 
+function componentProducto(data){
+	return '\
+		<li>\
+			<div class="imagen-producto">\
+			<img src="'+data.imagen_producto+'" alt="'+data.imagen_producto+'" width="100" height="100"/>\
+			</div>\
+			<div class="nombre-producto">\
+			<p>'+data.nombre_producto+'</p>\
+			</div>\
+			<div class="modelo-producto">\
+			<p>'+data.modelo_producto+'</p>\
+			</div>\
+			<div class="precio-producto">\
+			<p>'+data.precio+'</p>\
+			</div>\
+	'
+}
 
 
